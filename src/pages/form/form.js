@@ -1,9 +1,15 @@
-import react, {useState} from 'react';
+import react, {useState, useRef} from 'react';
 import style from './form.module.css';
 
 export default function Form() {
     const [building, setBuilding] = useState('--')
     const [metre, setMetre] = useState("M")
+
+    const handleClick = (e) => {
+        setBuilding(e.target.value);
+        e.preventDefault();
+
+    }
     return (
         <div className={style['wrapper']}>
             <form className={style['form']}>
@@ -15,14 +21,24 @@ export default function Form() {
                     </section>
                 </header>
                 {/* Allow user to select a building type */}
-                <p class={style["title"]}>Building Type</p>
-                <select className={style["building-opts"]} onChange={(e) => setBuilding(e.target.value)}>
+                <p className={style["title"]}>Building Type</p>
+                {/* <select className={style["building-opts"]} onClick={(e) => setBuilding(e.target.value)}>
                     <option className={style['build-opt']} value="--">--</option>
                     <option className={style['build-opt']} value="office">Office</option>
                     <option className={style['build-opt']} value="warehouse">Warehouse</option>
                     <option className={style['build-opt']} value="delivery centre">Delivery Centre</option>
                     <option className={style['build-opt']} value="land">Land</option>
-                </select>
+                </select> */}
+                <div className={style["buildBtns"]}>
+                    <div className={style["row1"]}>
+                        <button className={style["btn"]} value="office" onClick={(e) => handleClick(e)}>Office</button>
+                        <button className={style["btn"]} value="warehouse" onClick={(e) => handleClick(e)}>Warehouse</button>
+                    </div>
+                    <div className={style["row2"]}>
+                        <button className={style["btn"]} value="delivery centre" onClick={(e) => handleClick(e)}>Delivery</button>
+                        <button className={style["btn"]} value="land" onClick={(e) => handleClick(e)}>Land</button>
+                    </div>
+                </div>
                 {/* This information is dependant on the building type */}
                 {building === "office" ? <div>
                     <p className={style["title"]}>Size of building</p>
