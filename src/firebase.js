@@ -23,7 +23,7 @@ export function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
 };
 
-export function login(email, password) {
+export function Login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
 };
 

@@ -1,16 +1,24 @@
-import react, {useState, useRef} from 'react';
-import { Redirect } from 'react-router-dom';
-import style from './login/signup.module.css';
-import { signup, useAccount, logout } from '../../firebase';
+import {useState, useRef} from 'react';
+import { Navigate } from 'react-router-dom';
+import style from './signup.module.css';
+
+import { signup, useAccount, logout, Login } from '../../firebase';
 
 
-export default function signin () {
+export default function Signin () {
     const [loading, setLoading] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
     const email = useRef();
     const password = useRef();
     const activeAccount = useAccount();
 
-    async function handleClick () {
+    if (loggedIn) {
+        return (
+            <Navigate to={"/"}/>
+        )
+    }
+
+    async function handleClick() {
         setLoading(true);
         try {
             signup(email.current.value, password.current.value);
@@ -20,10 +28,11 @@ export default function signin () {
         setLoading(false);
     }
 
-    async function handleLogin () {
+    async function handleLogin() {
         setLoading(true);
         try {
-            login(email.current.value, password.current.value);
+            Login(email.current.value, password.current.value);
+            setLoggedIn(true);
         } catch {
             console.error();
         }
@@ -34,19 +43,26 @@ export default function signin () {
         setLoading(true);
         try {
             logout();
+            setLoggedIn(false);
         } catch {
             console.error();
         }
         setLoading(false);
     }
     return (
-        <div>
-            <input ref={email}></input>
-            <input ref={password} type="password"></input>
-            <button disabled={loading || activeAccount} onClick={handleClick()}>Sign Up</button>
-            <button disabled={loading || activeAccount} onClick={handleLogin()}>Login</button>
-            <button disabled={loading || !activeAccount} onClick={handleLogout()}>Logout</button>
-            
+        <div className={style["wrapper"]}>
+            <h1>Please Login in with your DHL account</h1>
+            <form className={style["form"]}>
+                <label>Email Address</label>
+                <input className={style["inputBar"]} ref={email}></input>
+                <label>Password</label>
+                <input className={style["inputBar"]} ref={password} type="password"></input>
+                <div className={style["btnGroup"]}>
+                    <button className={style["btn"]} disabled={loading || activeAccount} onClick={handleClick}>Sign Up</button>
+                    <button className={style["btn"]} disabled={loading || activeAccount} onClick={handleLogin}>Login</button>
+                    <button className={style["btn"]} disabled={loading || !activeAccount} onClick={handleLogout}>Logout</button>
+                </div>
+            </form>          
         </div>
     )
 }

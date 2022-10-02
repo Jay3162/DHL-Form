@@ -26,7 +26,8 @@
     align-items: center;
     height: 20vh;
     font-weight: 700;
-    font-size: 1.5vw;
+    font-size: 1vw;
+    flex-direction: row;
 }
 
 .account, a{ 
@@ -39,6 +40,10 @@
     font-size: 1vw;
 }
 
+.titleSec {
+    text-align: center;
+}
+
 .subTitle {
     font-weight: 700;
     font-size: 0.9vw;
@@ -47,6 +52,8 @@
 .locDetails {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 section {
@@ -56,10 +63,15 @@ section {
 
 .login {
     padding-right: 1vw;
+    transition: 500ms;
+}
+
+.login:hover {
+    color: #D40511;
+    transition: 500ms;
 }
 
 .building-opts {
-    /* border-style: none; */
     padding: 1vh 2vw;
     font-weight: 700;
     font-size: 1vw;
@@ -71,15 +83,9 @@ section {
     font-size: 1vw;
 }
 
-/* .measure {
-    padding: 1vh;
-    position: absolute;
-    margin-left: -9.5vw;
-    font-size: 1vw;
-    width: 7.5vw;
-    height: 4.7vh;
-    
-} */
+input:focus {
+    outline: none;
+}
 
 .locInput {
     padding: 1vh 2vw;
@@ -132,6 +138,7 @@ section {
 .bottomHalf {
     display: flex;
     justify-content: center;
+    align-items: center;
     
 }
 
@@ -157,6 +164,52 @@ section {
     justify-content: flex-start;
 }
 
+.completeBtn {
+    background-color: #65B32E;
+    color: white;
+    width: 8vw;
+    height: 4vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-weight: 700;
+    border-style: none;
+    transition: 500ms;
+    font-size: 1vw;
+}
+
+.completeBtn:hover {
+    transition: 500ms ease-in-out;
+    background-color: #487e22;
+    cursor: pointer;
+}
+
+.btnResult {
+    color: #D40511;
+    font-size: 1vw;
+
+}
+
+.location, section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.optStyle {
+    font-size: 1vw;
+    height: 5vh;
+    font-weight: 600;
+}
+
+.locDetails, .locInput {
+    width: 15vw;
+}
+
+.locInput {
+    font-size: 1vw;
+    font-weight: 600;
+}
+
 @media (max-width: 500px) {
     .title {
         font-size: 6vw;
@@ -176,6 +229,7 @@ section {
 
     .topHalf, .bottomHalf {
         flex-direction: column;
+        align-items: center;
     }
 
     .altTitle {
@@ -183,8 +237,11 @@ section {
         font-size: 3vw;
     }
 
-    .topHalf, .innerHalf, .inputBar {
-        width: 40vw;
+    .inputBar {
+        width: 30vw;
     }
 
+    .subTitle {
+        font-size: 3vw;
+    }
 }
