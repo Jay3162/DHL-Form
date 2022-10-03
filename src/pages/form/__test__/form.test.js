@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import Form from '../form.js'
+import { render, screen, fireEvent, act } from '@testing-library/react';
+import Form from '../form.js';
 
 test('renders building type buttons', () => {
     render(<Form/>);
@@ -34,10 +34,11 @@ test('scrolls down to form element on click', () => {
 
 })
 
-test('locations load on page', () => {
+test('locations load on page', async () => {
     render(<Form/>);
     const officeElement = screen.getByTestId("officeBtn");
     fireEvent.click(officeElement);
-    const dropdownElement = screen.getByTestId("dropdownEl");
-    expect(dropdownElement).toBeVisible();
+    await act(async () => {
+        render(<option data-testid={"dropdownElement"}>Afghanistan</option>);
+    })
 })

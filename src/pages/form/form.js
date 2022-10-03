@@ -12,6 +12,7 @@ export default function Form() {
     const ref = useRef(null);
     const metre = "in square feet";
 
+    // scrolls page to form after user selects a building type
     const handleClick = (e) => {
         setBuilding(e.target.value);
         e.preventDefault();
@@ -24,18 +25,30 @@ export default function Form() {
         </div>
     )  
     
+    // signs user out
     const logoutOnClick = () => {
         logout();
     }
     
     const [allCountries, setAllCountries] = useState([]);
     const [isLoading, setLoading] = useState(true);
+    const arr = [];
 
+    //makes api call for list of countries for the form's location section
     const getCountries = async () => {
         try {
             const newData = await fetch('https://restcountries.com/v3.1/all')
             const resp = await newData.json();
-            setAllCountries(resp)
+            for (let i = 0; i < resp.length; i++) {
+                if (resp[i].name.common !== arr[i-1]) {
+                    arr.push(resp[i].name.common)
+                } else {
+                    arr.push(resp[i].name.official)
+                }
+            }
+            console.log(arr.length)
+            arr.sort();
+            setAllCountries(arr)
             setLoading(false);
         } catch(e) {
             console.error(e);
@@ -85,7 +98,7 @@ export default function Form() {
                             <p className={style["altTitle"]}>Size of building</p>
                             {/* Allow user to search buildings with a specific size */}
                             <div>
-                                <input ref={ref} className={style["inputBar"]} placeholder={metre} type="number"></input>
+                                <input ref={ref} className={style["inputBar"]} data-testid="inputBar" placeholder={metre} type="number"></input>
                             </div>
                         </div>
                         <div className={style["innerHalf"]}>
@@ -114,7 +127,7 @@ export default function Form() {
                             <select className={style["optStyle"]}>
                                 {allCountries.map((obj, id) => {
                                     return (
-                                        <option key={id}>{obj.name.common}</option>
+                                        <option data-testid={"dropdownElement"} key={id}>{obj}</option>
                                     )
                                 })}</select></div>}
                         <div className={style["locDetails"]}>
@@ -168,7 +181,7 @@ export default function Form() {
                             <select className={style["optStyle"]}>
                                 {allCountries.map((obj, id) => {
                                     return (
-                                        <option key={id}>{obj.name.common}</option>
+                                        <option key={id}>{obj}</option>
                                     )
                                 })}</select></div>}
                         <div className={style["locDetails"]}>
@@ -211,7 +224,7 @@ export default function Form() {
                                 <select className={style["optStyle"]}>
                                     {allCountries.map((obj, id) => {
                                         return (
-                                            <option data-testid="dropdownElement" key={id}>{obj.name.common}</option>
+                                            <option data-testid="dropdownElement" key={id}>{obj}</option>
                                         )
                                     })}</select></div>}
                         <div className={style["locDetails"]}>
@@ -224,12 +237,14 @@ export default function Form() {
                 {building === "land" ? <div className={style["location"]}>
                     {/* Location separated by Region and city */}
                     <section>
+                        <p className={style["title"]}>Area Size</p>
+                        <input className={style["locInput"]}></input>
                         <p className={style["title"]}>Location</p>
                             {isLoading ? <div>Loading...</div> : <div>
                                 <select className={style["optStyle"]}>
                                     {allCountries.map((obj, id) => {
                                         return (
-                                            <option key={id}>{obj.name.common}</option>
+                                            <option data-testid={"dropdownElement"} key={id}>{obj}</option>
                                         )
                                     })}</select></div>}
                         <div className={style["locDetails"]}>
