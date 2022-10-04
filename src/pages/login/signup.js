@@ -18,15 +18,15 @@ export default function Signin () {
         )
     }
 
-    async function handleClick() {
-        setLoading(true);
-        try {
-            signup(email.current.value, password.current.value);
-        } catch {
-            console.error();
-        }
-        setLoading(false);
-    }
+    // async function handleClick() {
+    //     setLoading(true);
+    //     try {
+    //         signup(email.current.value, password.current.value);
+    //     } catch {
+    //         console.error();
+    //     }
+    //     setLoading(false);
+    // }
 
     async function handleLogin() {
         setLoading(true);
@@ -39,16 +39,6 @@ export default function Signin () {
         setLoading(false);
     }
 
-    async function handleLogout() {
-        setLoading(true);
-        try {
-            logout();
-            setLoggedIn(false);
-        } catch {
-            console.error();
-        }
-        setLoading(false);
-    }
     return (
         <div className={style["wrapper"]}>
             <h1>Please Login in with your DHL account</h1>
@@ -58,9 +48,8 @@ export default function Signin () {
                 <label>Password</label>
                 <input className={style["inputBar"]} ref={password} type="password" required></input>
                 <div className={style["btnGroup"]}>
-                    <button className={style["btn"]} disabled={loading || activeAccount} onClick={handleClick}>Sign Up</button>
+                    {/* <button className={style["btn"]} disabled={loading || activeAccount} onClick={handleClick}>Sign Up</button> */}
                     <button className={style["btn"]} disabled={loading || activeAccount} onClick={handleLogin}>Login</button>
-                    <button className={style["btn"]} disabled={loading || !activeAccount} onClick={handleLogout}>Logout</button>
                 </div>
             </form>          
         </div>
