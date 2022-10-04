@@ -16,10 +16,7 @@ export default function Form() {
     const metre = "in square feet";
 
     const handleSubmit = (e) => {
-        if (currentAccount) {
-            setFormSub(true);
-            console.log("ready")
-        }
+        setFormSub(true);
         e.preventDefault();
     }
 
@@ -150,7 +147,7 @@ export default function Form() {
                             <p className={style["panel-txt"]}>Success</p>
                         </div> : <div></div>}
 
-                        {currentAccount ? <div></div> : <p>Please Sign In</p>}
+                        {/* {currentAccount ? <div></div> : <p>Please Sign In</p>} */}
 
                         {confirmBtn}
                     </section>
@@ -210,7 +207,7 @@ export default function Form() {
                             <p className={style["panel-txt"]}>Success</p>
                         </div> : <div></div>}
 
-                        {currentAccount ? <div></div> : <p>Please Sign In</p>}
+                        {/* {currentAccount ? <div></div> : <p>Please Sign In</p>} */}
 
                         {confirmBtn}
                     </section>
@@ -259,7 +256,7 @@ export default function Form() {
                             <p className={style["panel-txt"]}>Success</p>
                         </div> : <div></div>}
 
-                        {currentAccount ? <div></div> : <p>Please Sign In</p>}
+                        {/* {currentAccount ? <div></div> : <p>Please Sign In</p>} */}
 
                         {confirmBtn}
                     </section>
@@ -285,7 +282,7 @@ export default function Form() {
                             <p className={style["panel-txt"]}>Success</p>
                         </div> : <div></div>}
 
-                        {currentAccount ? <div></div> : <p>Please Sign In</p>}
+                        {/* {currentAccount ? <div></div> : <p>Please Sign In</p>} */}
 
                         {confirmBtn}
                     </section>
