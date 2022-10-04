@@ -149,6 +149,9 @@ export default function Form() {
                         {formSub === true ? <div className={style["panel"]}>
                             <p className={style["panel-txt"]}>Success</p>
                         </div> : <div></div>}
+
+                        {currentAccount ? <div></div> : <p>Please Sign In</p>}
+
                         {confirmBtn}
                     </section>
                     
@@ -206,6 +209,9 @@ export default function Form() {
                         {formSub === true ? <div className={style["panel"]}>
                             <p className={style["panel-txt"]}>Success</p>
                         </div> : <div></div>}
+
+                        {currentAccount ? <div></div> : <p>Please Sign In</p>}
+
                         {confirmBtn}
                     </section>
                 </div> : <div></div>}
@@ -252,6 +258,9 @@ export default function Form() {
                         {formSub === true ? <div className={style["panel"]}>
                             <p className={style["panel-txt"]}>Success</p>
                         </div> : <div></div>}
+
+                        {currentAccount ? <div></div> : <p>Please Sign In</p>}
+
                         {confirmBtn}
                     </section>
                 </div> : <div></div>}
