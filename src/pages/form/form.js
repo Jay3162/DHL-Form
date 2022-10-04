@@ -80,7 +80,7 @@ export default function Form() {
                             <p className={style["login"]}>{currentAccount.email}</p>
                             <a to="/" onClick={logoutOnClick} className={style["logout"]}>Logout</a>
                         </div> : <div>
-                            <Link to="/signin" className={style["login"]}>Login</Link>
+                            <Link to="/signin" className={style["login"]} disabled={true}>Login</Link>
                                 </div>}
                         
                     </section>
