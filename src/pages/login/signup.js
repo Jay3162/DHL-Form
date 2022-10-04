@@ -54,9 +54,9 @@ export default function Signin () {
             <h1>Please Login in with your DHL account</h1>
             <form className={style["form"]}>
                 <label>Email Address</label>
-                <input className={style["inputBar"]} ref={email}></input>
+                <input className={style["inputBar"]} ref={email} type="email" required></input>
                 <label>Password</label>
-                <input className={style["inputBar"]} ref={password} type="password"></input>
+                <input className={style["inputBar"]} ref={password} type="password" required></input>
                 <div className={style["btnGroup"]}>
                     <button className={style["btn"]} disabled={loading || activeAccount} onClick={handleClick}>Sign Up</button>
                     <button className={style["btn"]} disabled={loading || activeAccount} onClick={handleLogin}>Login</button>

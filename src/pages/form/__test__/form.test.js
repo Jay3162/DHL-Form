@@ -1,8 +1,13 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import Form from '../form.js';
+import {MemoryRouter} from 'react-router-dom';
 
 test('renders building type buttons', () => {
-    render(<Form/>);
+    render(
+        <MemoryRouter>
+            <Form/>
+        </MemoryRouter>
+        );
     const officeElement = screen.getByTestId("officeBtn");
     const warehouseElement = screen.getByTestId("warehouseBtn");
     const deliveryElement = screen.getByTestId("deliveryBtn");
@@ -15,7 +20,11 @@ test('renders building type buttons', () => {
 });
 
 test('renders form on click', () => {
-    render(<Form/>);
+    render(
+        <MemoryRouter>
+            <Form/>
+        </MemoryRouter>
+        );
     const officeElement = screen.getByTestId("officeBtn");
 
     fireEvent.click(officeElement);
@@ -24,7 +33,11 @@ test('renders form on click', () => {
 })
 
 test('scrolls down to form element on click', () => {
-    render(<Form/>);
+    render(
+        <MemoryRouter>
+            <Form/>
+        </MemoryRouter>
+        );
     const officeElement = screen.getByTestId("officeBtn");
     fireEvent.click(officeElement);
     const formElement = screen.getByTestId("inputBar");
@@ -35,7 +48,11 @@ test('scrolls down to form element on click', () => {
 })
 
 test('locations load on page', async () => {
-    render(<Form/>);
+    render(
+    <MemoryRouter>
+        <Form/>
+    </MemoryRouter>
+    );
     const officeElement = screen.getByTestId("officeBtn");
     fireEvent.click(officeElement);
     await act(async () => {

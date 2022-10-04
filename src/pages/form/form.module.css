@@ -71,6 +71,10 @@ section {
     transition: 500ms;
 }
 
+.logout:hover {
+    cursor: pointer;
+}
+
 .building-opts {
     padding: 1vh 2vw;
     font-weight: 700;
@@ -169,7 +173,7 @@ input:focus {
     color: white;
     width: 8vw;
     height: 4vh;
-    margin-top: 5vh;
+    margin-top: 2vh;
     margin-bottom: 5vh;
     font-weight: 700;
     border-style: none;
@@ -210,6 +214,28 @@ input:focus {
     font-weight: 600;
 }
 
+.panel {
+    display: flex;
+    border: 1px solid pink;
+    padding: 0.1vh 2vw;
+    border-radius: 15px;
+    background-color: rgb(255, 221, 227);
+    width: 20vw;
+    margin: 1vw;
+    margin-bottom: 0vw;
+    transition: 500ms ease;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel-txt {
+    transition: 500ms ease;
+    font-size: 2.5vw;
+    color: rgb(255, 136, 156);
+    text-align: center;
+}
+
 @media (max-width: 500px) {
     .title {
         font-size: 6vw;
@@ -243,5 +269,10 @@ input:focus {
 
     .subTitle {
         font-size: 3vw;
+    }
+
+    .panel {
+        height: 5vh;
+        border-radius: 7.5px;
     }
 }

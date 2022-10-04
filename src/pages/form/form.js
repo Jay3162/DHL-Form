@@ -5,23 +5,35 @@ import {TbTruckDelivery} from 'react-icons/tb'
 import {BiLandscape} from 'react-icons/bi'
 import style from './form.module.css';
 import { logout, useAccount } from '../../firebase'
+import { Link } from 'react-router-dom'
 export default function Form() {
     const [building, setBuilding] = useState('--')
+    const [formSub, setFormSub] = useState(false);
     const currentAccount = useAccount();
 
+    const [buildType, setBuildType] = useState("")
     const ref = useRef(null);
     const metre = "in square feet";
+
+    const handleSubmit = (e) => {
+        if (currentAccount) {
+            setFormSub(true);
+            console.log("ready")
+        }
+        e.preventDefault();
+    }
 
     // scrolls page to form after user selects a building type
     const handleClick = (e) => {
         setBuilding(e.target.value);
+        setFormSub(false);
         e.preventDefault();
         return ref.current?.scrollIntoView();   
     }
 
     const confirmBtn = (
         <div>
-            <button className={style["completeBtn"]}>Complete</button>
+            <button className={style["completeBtn"]} type="submit">Complete</button>
         </div>
     )  
     
@@ -62,17 +74,17 @@ export default function Form() {
 
     return (
         <div className={style['wrapper']}>
-            <form className={style['form']}>
+            <form className={style['form']} onSubmit={(e) => handleSubmit(e)}>
                 <header className={style["header"]}>
                     {/* User authentication */}
                     <section className={style["account"]}>
                         {currentAccount ? 
                         <div>
                             <p className={style["login"]}>{currentAccount.email}</p>
-                            <a href="/" onClick={logoutOnClick} className={style["logout"]}>Logout</a>
-                        </div> : <p>
-                            <a href="/signin" className={style["login"]}>Login</a>
-                                </p>}
+                            <a to="/" onClick={logoutOnClick} className={style["logout"]}>Logout</a>
+                        </div> : <div>
+                            <Link to="/signin" className={style["login"]}>Login</Link>
+                                </div>}
                         
                     </section>
                 </header>
@@ -98,13 +110,13 @@ export default function Form() {
                             <p className={style["altTitle"]}>Size of building</p>
                             {/* Allow user to search buildings with a specific size */}
                             <div>
-                                <input ref={ref} className={style["inputBar"]} data-testid="inputBar" placeholder={metre} type="number"></input>
+                                <input ref={ref} value={buildType} onChange={(e) => {setBuildType(e.target.value)}} className={style["inputBar"]} data-testid="inputBar" placeholder={metre} type="number" required></input>
                             </div>
                         </div>
                         <div className={style["innerHalf"]}>
                             <p className={style["altTitle"]}>Storage Area</p>
                             <div>
-                                <input className={style["inputBar"]}></input>
+                                <input className={style["inputBar"]} required></input>
                             </div>
                         </div>
                     </div>
@@ -114,7 +126,7 @@ export default function Form() {
                             <input className={style["inputBar"]}></input>
                         </div>
                         <div className={style["innerHalf"]}>
-                            <p className={style["altTitle"]}>Number of offices needed</p>
+                            <p className={style["altTitle"]} required>Number of offices needed</p>
                             <input className={style["inputBar"]}></input>
                         </div>
                     </div>
@@ -134,6 +146,9 @@ export default function Form() {
                             <p className={style["subTitle"]}>City</p>
                             <input className={style["locInput"]}></input>
                         </div>
+                        {formSub === true ? <div className={style["panel"]}>
+                            <p className={style["panel-txt"]}>Success</p>
+                        </div> : <div></div>}
                         {confirmBtn}
                     </section>
                     
@@ -144,7 +159,7 @@ export default function Form() {
                             <p className={style["altTitle"]}>Size of building</p>
                             {/* Allow user to search buildings with a specific size */}
                             <div>
-                                <input className={style["inputBar"]} ref={ref} placeholder={metre} type="number"></input>
+                                <input className={style["inputBar"]} value={buildType} onChange={(e) => {setBuildType(e.target.value)}} ref={ref} placeholder={metre} type="number" required></input>
                             </div>
                         </div>
                         <div className={style["innerHalf"]}>
@@ -161,13 +176,13 @@ export default function Form() {
                         </div>
                         <div className={style["innerHalf"]}>
                             <p className={style["altTitle"]}>Truck Yard</p>
-                            <input className={style["inputBar"]}></input>
+                            <input className={style["inputBar"]} required></input>
                         </div>
                     </div>
                     <div className={style["bottomHalf"]}>
                         <div className={style["innerHalf"]}>
                             <p className={style["altTitle"]}>Storage Area</p>
-                            <input className={style["inputBar"]}></input>
+                            <input className={style["inputBar"]} required></input>
                         </div>
                         <div className={style["innerHalf"]}>
                             <p className={style["altTitle"]}>Parking</p>
@@ -187,7 +202,10 @@ export default function Form() {
                         <div className={style["locDetails"]}>
                             <p className={style["subTitle"]}>City</p>
                             <input className={style["locInput"]}></input>
-                        </div> 
+                        </div>
+                        {formSub === true ? <div className={style["panel"]}>
+                            <p className={style["panel-txt"]}>Success</p>
+                        </div> : <div></div>}
                         {confirmBtn}
                     </section>
                 </div> : <div></div>}
@@ -197,13 +215,13 @@ export default function Form() {
                             <p className={style["altTitle"]}>Size of building</p>
                             {/* Allow user to search buildings with a specific size */}
                             <div>
-                                <input className={style["inputBar"]} ref={ref} placeholder={metre} type="number"></input>
+                                <input className={style["inputBar"]} value={buildType} onChange={(e) => {setBuildType(e.target.value)}} ref={ref} placeholder={metre} type="number" required></input>
                             </div>
                         </div>
                         <div className={style["innerHalf"]}>
                             <p className={style["altTitle"]}>Storage Area</p>
                             <div>
-                                <input className={style["inputBar"]}></input>
+                                <input className={style["inputBar"]} required></input>
                             </div>
                         </div>
                     </div>
@@ -214,7 +232,7 @@ export default function Form() {
                         </div>
                         <div className={style["innerHalf"]}>
                             <p className={style["altTitle"]}>Truck Yard</p>
-                            <input className={style["inputBar"]}></input>
+                            <input className={style["inputBar"]} required></input>
                         </div>
                     </div>
                     {/* Location separated by Region and city */}
@@ -231,6 +249,9 @@ export default function Form() {
                             <p className={style["subTitle"]}>City</p>
                             <input className={style["locInput"]}></input>
                         </div>
+                        {formSub === true ? <div className={style["panel"]}>
+                            <p className={style["panel-txt"]}>Success</p>
+                        </div> : <div></div>}
                         {confirmBtn}
                     </section>
                 </div> : <div></div>}
@@ -238,7 +259,7 @@ export default function Form() {
                     {/* Location separated by Region and city */}
                     <section>
                         <p className={style["title"]}>Area Size</p>
-                        <input className={style["locInput"]}></input>
+                        <input className={style["locInput"]} value={buildType} onChange={(e) => {setBuildType(e.target.value)}} placeholder="sq" required></input>
                         <p className={style["title"]}>Location</p>
                             {isLoading ? <div>Loading...</div> : <div>
                                 <select className={style["optStyle"]}>
@@ -251,8 +272,15 @@ export default function Form() {
                             <p className={style["subTitle"]} ref={ref}>City</p>
                             <input className={style["locInput"]}></input>
                         </div>
+                        {formSub ? <div className={style["panel"]}>
+                            <p className={style["panel-txt"]}>Success</p>
+                        </div> : <div></div>}
+
+                        {currentAccount ? <div></div> : <p>Please Sign In</p>}
+
                         {confirmBtn}
                     </section>
+
                 </div> : <div></div>}
             </form>
         </div>

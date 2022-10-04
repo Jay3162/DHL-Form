@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Form/>}></Route>
-          <Route path="/signin" exact element={<Signin></Signin>}></Route>
+          <Route path="/signin" exact element={<Signin/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
